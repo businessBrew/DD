@@ -1,0 +1,176 @@
+CREATE TABLE ROLE
+( role_cd VARCHAR(50) NOT NULL,
+  role_desc VARCHAR(100),
+  active_ind VARCHAR(1) NOT NULL,
+  upd_id VARCHAR(30) NOT NULL,
+  ins_tmstmp datetime,
+  upd_tmstmp datetime,
+CONSTRAINT role_cd_pk PRIMARY KEY (role_cd)
+);
+
+CREATE TABLE LOGIN
+( uid INT(10) AUTO_INCREMENT,
+  cred VARCHAR(100) NOT NULL,
+  start_dt DATE NOT NULL,
+  end_dt DATE,
+  role_cd VARCHAR(50),
+  active_ind VARCHAR(1) NOT NULL,
+  upd_id VARCHAR(30) NOT NULL,
+  ins_tmstmp datetime,
+  upd_tmstmp datetime,
+CONSTRAINT uid_pk PRIMARY KEY (uid)
+);
+
+
+CREATE TABLE SCHOOL
+( sch_id INT(10) AUTO_INCREMENT,
+  sch_name VARCHAR(100) NOT NULL,
+  sch_cd VARCHAR(50) NOT NULL,
+  address TEXT,
+  owner  VARCHAR(50),
+  owner_title  VARCHAR(500),
+  comment TEXT,
+  upd_id VARCHAR(30) NOT NULL,
+  ins_tmstmp datetime,
+  upd_tmstmp datetime,
+CONSTRAINT sch_id_pk PRIMARY KEY (sch_id)
+);
+
+
+CREATE TABLE BRANCH
+( branch_id INT(10) AUTO_INCREMENT,
+  branch_name VARCHAR(100) NOT NULL,
+  branch_cd VARCHAR(50) NOT NULL,
+  address TEXT,
+  owner  VARCHAR(50),
+  owner_title  VARCHAR(500),
+  sch_id INT(10),
+  principal VARCHAR(100),
+  comment TEXT,
+  upd_id VARCHAR(30) NOT NULL,
+  ins_tmstmp datetime,
+  upd_tmstmp datetime,
+CONSTRAINT branch_id_pk PRIMARY KEY (branch_id)
+);
+
+CREATE TABLE STUDENT
+( stu_id INT(10) AUTO_INCREMENT,
+  stu_name VARCHAR(100) NOT NULL,
+  roll_no VARCHAR(100) NOT NULL,
+  dob DATE NOT NULL,
+  blood_grp VARCHAR(5),
+  gender VARCHAR(2),
+  class VARCHAR(5),
+  section VARCHAR(10),
+  father_name VARCHAR(50),
+  father_mob INT(10),
+  mother_name VARCHAR(50),
+  mother_mob INT(10),
+  guardian_name VARCHAR(50),
+  guardian_mob INT(10),  
+  comm_address TEXT,
+  permanent_address TEXT,
+  branch_id INT(10),
+  active_ind VARCHAR(1) NOT NULL,  
+  identity_mark VARCHAR(100) NOT NULL,
+  comment TEXT,
+  upd_id VARCHAR(30) NOT NULL,
+  ins_tmstmp datetime,
+  upd_tmstmp datetime,
+CONSTRAINT stu_id_pk PRIMARY KEY (stu_id)
+);
+
+CREATE TABLE TRANSPORT
+( stu_id INT(10),
+  pickup_point VARCHAR(100),
+  drop_point VARCHAR(100),
+  act_code VARCHAR(50),
+  act_dt DATE,
+  dact_dt DATE,
+  driver_name VARCHAR(50),
+  driver_mob INT(10),
+  comment TEXT,
+  upd_id VARCHAR(30) NOT NULL,
+  ins_tmstmp datetime,
+  upd_tmstmp datetime,
+);
+
+CREATE TABLE SCORECARD
+( stu_id INT(10) ,
+  subject VARCHAR(100) NOT NULL,
+  marks INT(3),
+  act_dt DATE,
+  dact_dt DATE,
+  comment TEXT,
+  upd_id VARCHAR(30) NOT NULL,
+  ins_tmstmp datetime,
+  upd_tmstmp datetime
+);
+
+CREATE TABLE ATTENDANCE
+( stu_id INT(10),
+  cal_dt DATE,  
+  present VARCHAR(1),
+  in_tm DATETIME,
+  out_tm DATETIME,
+  comment TEXT,
+  upd_id VARCHAR(30) NOT NULL,
+  ins_tmstmp datetime,
+  upd_tmstmp datetime
+);
+
+CREATE TABLE HOLIDAY
+( sch_id INT(10),
+  branch_id INT(10),
+  cal_dt DATE,  
+  comment TEXT,
+  upd_id VARCHAR(30) NOT NULL,
+  ins_tmstmp datetime,
+  upd_tmstmp datetime
+);
+
+CREATE TABLE NOTIFICATION
+( sch_id INT(10),
+  branch_id INT(10),
+  class VARCHAR(5),
+  section VARCHAR(10),
+  stu_id INT(10),
+  act_dt DATE,
+  dact_dt DATE,
+  days_back INT(3),
+  severity VARCHAR(10),
+  comment TEXT,
+  upd_id VARCHAR(30) NOT NULL,
+  ins_tmstmp datetime,
+  upd_tmstmp datetime
+);
+
+CREATE TABLE CLASS
+( class VARCHAR(5) NOT NULL,
+  class_desc VARCHAR(50),
+  sch_id INT(10),
+  comment TEXT,
+  upd_id VARCHAR(30) NOT NULL,
+  ins_tmstmp datetime,
+  upd_tmstmp datetime
+);
+
+
+CREATE TABLE SECTION
+( section VARCHAR(10) NOT NULL,
+  section_desc VARCHAR(50),
+  sch_id INT(10),
+  comment TEXT,
+  upd_id VARCHAR(30) NOT NULL,
+  ins_tmstmp datetime,
+  upd_tmstmp datetime
+);
+
+CREATE TABLE `users_role` (
+  `id` int(11) NOT NULL DEFAULT '0',
+  `user_id` int(11) DEFAULT NULL,
+  `role_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8$$
+
+
