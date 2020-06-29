@@ -32,14 +32,14 @@ public class UsersMngServiceImpl implements IUsersMngService{
 			if(obj != null) {
 				appDTO.setData(obj);
 			}
-			appDTO.setMessage(DDCommonConstant.SUCCESS_MESSAGE);
+			appDTO.setMessage(DDCommonConstant.SUCCESS_CODE);
 			appDTO.setStatus(DDCommonConstant.SUCCESS_MESSAGE);
 		} catch (DataAccessException|SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		logger.info("end : getQuestionear UsersMngServiceImpl ");
-		return null;
+		return appDTO;
 	}
 
 }

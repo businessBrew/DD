@@ -73,6 +73,7 @@ public class UsersMngController {
 		}
 	}
 	
+	@GetMapping(value = "/listQuestion")
 	public ResponseEntity<Object> getQuestionear(){
 		logger.info("Start: getQuestionear ");
 		
