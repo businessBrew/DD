@@ -2,13 +2,12 @@ package com.dd.DigitalDiary.repo;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
-
-import com.dd.DigitalDiary.entity.DAOUser;
+import com.dd.DigitalDiary.entity.Users;
 
 
 @Repository
-public interface UserRepo extends CrudRepository<DAOUser, Integer> {
+public interface UserRepo extends CrudRepository<Users, Integer> {
 	
-	DAOUser findByUsername(String username);
+	Users findByUserName(String userName);
 	
 }
