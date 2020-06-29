@@ -51,8 +51,7 @@ public class JwtUserDetailsService implements UserDetailsService {
 		newUser.setLastaccessed(new Date());
 		Collection<Roles> roleList = new ArrayList<Roles>();
 		if(user.getPassword() == null) {
-			//roleList.add(DDCommonConstant.DEFAULT_USER_PASSWORD);
-			Roles role = roleRepository.findByRoleName(DDCommonConstant.USER_ACTIVATION_FLAG);
+			Roles role = roleRepository.findByRoleName(DDCommonConstant.USER_DEFAULT_ROLE_THROUGH_APP);
 			roleList.add(role);
 		}
 		newUser.setRoles(roleList);
