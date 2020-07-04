@@ -1,6 +1,9 @@
 package com.dd.DigitalDiary.dto;
 
 import java.sql.Date;
+import java.util.Collection;
+
+import com.dd.DigitalDiary.entity.Roles;
 
 
 public class UserDTO {
@@ -14,6 +17,8 @@ public class UserDTO {
 	private String isActive;
 	private Date lastaccessed;
 	private Date lastUpdated;
+	private Collection<Roles> roles;
+	private String jwtToken;
 	
 	public Integer getUserId() {
 		return userId;
@@ -68,6 +73,18 @@ public class UserDTO {
 	}
 	public void setLastUpdated(Date lastUpdated) {
 		this.lastUpdated = lastUpdated;
+	}
+	public Collection<Roles> getRoles() {
+		return roles;
+	}
+	public void setRoles(Collection<Roles> roles) {
+		this.roles = roles;
+	}
+	public String getJwtToken() {
+		return jwtToken;
+	}
+	public void setJwtToken(String jwtToken) {
+		this.jwtToken = jwtToken;
 	}
 	
 	

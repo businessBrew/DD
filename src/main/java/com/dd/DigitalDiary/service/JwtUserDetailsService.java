@@ -37,24 +37,12 @@ public class JwtUserDetailsService implements UserDetailsService {
 		Users user = userDao.findByUserName(username);
 		if (user == null) {
 			throw new UsernameNotFoundException("User not found with username: " + username);
+		}else {
+			
 		}
 		return new org.springframework.security.core.userdetails.User(user.getUserName(), user.getPassword(),
 				new ArrayList<>());
 	}
 	
-	public Users save(UserDTO user) {
-		Users newUser = new Users();
-		newUser.setUserName(user.getUserName());
-		newUser.setPassword(bcryptEncoder.encode(DDCommonConstant.DEFAULT_USER_PASSWORD));
-		newUser.setIsActive(DDCommonConstant.USER_ACTIVATION_FLAG);
-		newUser.setLastUpdated(new Date());
-		newUser.setLastaccessed(new Date());
-		Collection<Roles> roleList = new ArrayList<Roles>();
-		if(user.getPassword() == null) {
-			Roles role = roleRepository.findByRoleName(DDCommonConstant.USER_DEFAULT_ROLE_THROUGH_APP);
-			roleList.add(role);
-		}
-		newUser.setRoles(roleList);
-		return userDao.save(newUser);
-	}
+	
 }

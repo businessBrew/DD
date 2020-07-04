@@ -47,20 +47,22 @@ public class UsersMngController {
 	
 	@PostMapping(value = "/authenticate")
 	public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
-
+		UserDTO userdto = new UserDTO();
 		authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
 
-		final UserDetails userDetails = userDetailsService
-				.loadUserByUsername(authenticationRequest.getUsername());
+		final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
 
 		final String token = jwtTokenUtil.generateToken(userDetails);
-
+		userdto.setJwtToken(token);
+		userdto.setUserName(authenticationRequest.getUsername());
+		userdto.setPassword("******");
 		return ResponseEntity.ok(new JwtResponse(token));
 	}
 	
-	@PostMapping(value = "/register",consumes=MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<?> saveUser(@RequestBody UserDTO user) throws Exception {
-		return ResponseEntity.ok(userDetailsService.save(user));
+	@PostMapping(value = "/registerNewUser",consumes=MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<?> saveUser(@RequestBody UserDTO user){
+		AppDTO obj = iUsersMngService.registerNewUser(user);
+		return new ResponseEntity<Object>(obj,HttpStatus.OK);
 	}
 
 	private void authenticate(String username, String password) throws Exception {
