@@ -8,5 +8,9 @@ public interface IUsersMngService {
 	public AppDTO getQuestionear();
 	
 	public AppDTO registerNewUser(UserDTO userDto);
+	
+	public AppDTO changePassword(UserDTO userDto);
+	
+	public AppDTO getRoles();
 
 }

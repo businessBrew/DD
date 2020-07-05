@@ -19,6 +19,7 @@ public class UserDTO {
 	private Date lastUpdated;
 	private Collection<Roles> roles;
 	private String jwtToken;
+	private HintQuestionDTO hintQuestionDTO;
 	
 	public Integer getUserId() {
 		return userId;
@@ -85,6 +86,12 @@ public class UserDTO {
 	}
 	public void setJwtToken(String jwtToken) {
 		this.jwtToken = jwtToken;
+	}
+	public HintQuestionDTO getHintQuestionDTO() {
+		return hintQuestionDTO;
+	}
+	public void setHintQuestionDTO(HintQuestionDTO hintQuestionDTO) {
+		this.hintQuestionDTO = hintQuestionDTO;
 	}
 	
 	

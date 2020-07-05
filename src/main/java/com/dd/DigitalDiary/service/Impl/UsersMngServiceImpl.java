@@ -74,4 +74,50 @@ public class UsersMngServiceImpl implements IUsersMngService {
 		return appDTO;
 	}
 
+	@Override
+	public AppDTO changePassword(UserDTO userDto) {
+		// TODO Auto-generated method stub
+		logger.info("start : changePassword UsersMngServiceImpl ");
+		AppDTO appDTO = new AppDTO();
+
+		try {
+			Object userObj = usersMngDao.changePassword(userDto);
+
+			if (userObj != null)
+				appDTO.setData(userObj);
+
+			appDTO.setMessage(DDCommonConstant.SUCCESS_MESSAGE);
+			appDTO.setStatus(DDCommonConstant.SUCCESS_CODE);
+
+		} catch (DataAccessException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		logger.info("End : changePassword UsersMngServiceImpl ");
+		return appDTO;
+	}
+
+	@Override
+	public AppDTO getRoles() {
+		// TODO Auto-generated method stub
+		logger.info("start : getRoles UsersMngServiceImpl ");
+		AppDTO appDTO = new AppDTO();
+
+		try {
+			Object roleObj = usersMngDao.getRoles();
+
+			if (roleObj != null)
+				appDTO.setData(roleObj);
+
+			appDTO.setMessage(DDCommonConstant.SUCCESS_MESSAGE);
+			appDTO.setStatus(DDCommonConstant.SUCCESS_CODE);
+
+		} catch (DataAccessException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		logger.info("End : getRoles UsersMngServiceImpl ");
+		return appDTO;
+	}
+
 }

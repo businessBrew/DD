@@ -18,4 +18,5 @@ public class DDCommonConstant {
 	public static int NULL_POINTER_ERROR_CODE = 103;
 	public static String NULL_POINTER_EXCEPTION="Some value is passed as Null";
 	public static String NO_DATA_FOUND="No Data Found for the request";
+	public static String USER_NOT_FOUND="User not found with username: ";
 }

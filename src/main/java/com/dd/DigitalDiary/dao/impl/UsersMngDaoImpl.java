@@ -8,7 +8,7 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.aop.framework.adapter.ThrowsAdviceInterceptor;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -19,9 +19,11 @@ import com.dd.DigitalDiary.dao.IUsersMngDao;
 import com.dd.DigitalDiary.dto.UserDTO;
 import com.dd.DigitalDiary.entity.Roles;
 import com.dd.DigitalDiary.entity.Users;
+import com.dd.DigitalDiary.entity.UsersHintQuestion;
 import com.dd.DigitalDiary.repo.HintQuestionRepository;
 import com.dd.DigitalDiary.repo.RolesRepository;
 import com.dd.DigitalDiary.repo.UserRepo;
+import com.dd.DigitalDiary.repo.UsersHintRepository;
 import com.dd.DigitalDiary.util.UserAlreadyExistException;
 
 
@@ -41,6 +43,9 @@ public class UsersMngDaoImpl implements IUsersMngDao{
 	
 	@Autowired
 	private UserRepo userRepo;
+	
+	@Autowired
+	private UsersHintRepository usersHintRepository;
 	
 	@Override
 	public Object getQuestionear() throws DataAccessException,SQLException {
@@ -87,6 +92,28 @@ public class UsersMngDaoImpl implements IUsersMngDao{
 		if(userDetails != null)
 			return true;
 		return false;
+	}
+
+	@Override
+	public Object changePassword(UserDTO userDto) throws DataAccessException, SQLException {
+		// TODO Auto-generated method stub
+		logger.info("start : changePassword UsersMngDaoImpl ");
+		UsersHintQuestion userHint = new UsersHintQuestion();
+		userRepo.updatePasswordByUserId(userDto.getUserId(),bcryptEncoder.encode(userDto.getPassword()));
+		BeanUtils.copyProperties(userDto.getHintQuestionDTO(),userHint);
+		usersHintRepository.save(userHint);
+		logger.info("End : changePassword UsersMngDaoImpl ");
+		return null;
+	}
+
+	@Override
+	public Object getRoles() throws DataAccessException, SQLException {
+		// TODO Auto-generated method stub
+		logger.info("start : getRoles UsersMngDaoImpl ");
+		 
+		List<Roles> roleList = roleRepository.findAll();
+		logger.info("End : getRoles UsersMngDaoImpl ");
+		return roleList;
 	}
 
 }

@@ -85,5 +85,27 @@ public class UsersMngController {
 		return new ResponseEntity<Object>(queData,HttpStatus.OK);
 		
 	}
+	
+	@PostMapping(value = "/changePassword")
+	public ResponseEntity<Object> ChangePassword(@RequestBody UserDTO userDto){
+		logger.info("Start: ChangePassword ");
+		
+		AppDTO queData = iUsersMngService.changePassword(userDto);
+		
+		logger.info("End: ChangePassword ");
+		return new ResponseEntity<Object>(queData,HttpStatus.OK);
+		
+	}
+	
+	@PostMapping(value = "/getRoles")
+	public ResponseEntity<Object> getRoles(){
+		logger.info("Start: getroles ");
+		
+		AppDTO queData = iUsersMngService.getRoles();
+		
+		logger.info("End: getroles ");
+		return new ResponseEntity<Object>(queData,HttpStatus.OK);
+		
+	}
 
 }
