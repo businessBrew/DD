@@ -8,7 +8,7 @@ public class DDCommonConstant {
 	public static String SUCCESS_MESSAGE="SUCCESS";
 	public static String DEFAULT_USER_PASSWORD="India@123";
 	public static String USER_ACTIVATION_FLAG="Y";
-	public static String USER_DEFAULT_ROLE_THROUGH_APP="USER";
+	public static Integer USER_DEFAULT_ROLE_THROUGH_APP=3;
 	
 	public static int SQL_CODE = HttpServletResponse.SC_NOT_FOUND;
 	public static String SQL_EXCEPTION = "Exception while data fetching from data base";

@@ -12,5 +12,7 @@ public interface IUsersMngService {
 	public AppDTO changePassword(UserDTO userDto);
 	
 	public AppDTO getRoles();
+	
+	public AppDTO createUser(UserDTO userDto);
 
 }

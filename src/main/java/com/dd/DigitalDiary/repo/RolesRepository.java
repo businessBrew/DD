@@ -8,7 +8,7 @@ import com.dd.DigitalDiary.entity.Roles;
 
 public interface RolesRepository extends CrudRepository<Roles, Integer>{
 	
-	Roles findByRoleName(String name);
+	Roles findByRoleId(Integer name);
 	
 	List<Roles> findAll();
 

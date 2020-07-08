@@ -15,5 +15,7 @@ public interface IUsersMngDao {
 	public Object changePassword(UserDTO userDto) throws DataAccessException,SQLException;
 	
 	public Object getRoles() throws DataAccessException,SQLException;
+	
+	public Object createUser() throws DataAccessException,SQLException;
 
 }

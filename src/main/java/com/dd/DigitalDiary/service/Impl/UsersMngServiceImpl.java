@@ -120,4 +120,27 @@ public class UsersMngServiceImpl implements IUsersMngService {
 		return appDTO;
 	}
 
+	@Override
+	public AppDTO createUser(UserDTO userDto) {
+		// TODO Auto-generated method stub
+		logger.info("start : createUser UsersMngServiceImpl ");
+		AppDTO appDTO = new AppDTO();
+
+		try {
+			Object userObj = usersMngDao.createUser();
+
+			if (userObj != null)
+				appDTO.setData(userObj);
+
+			appDTO.setMessage(DDCommonConstant.SUCCESS_MESSAGE);
+			appDTO.setStatus(DDCommonConstant.SUCCESS_CODE);
+
+		} catch (DataAccessException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		logger.info("End : getRoles UsersMngServiceImpl ");
+		return appDTO;
+	}
+
 }

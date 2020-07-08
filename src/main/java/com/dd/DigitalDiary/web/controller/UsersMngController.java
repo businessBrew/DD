@@ -97,11 +97,22 @@ public class UsersMngController {
 		
 	}
 	
-	@PostMapping(value = "/getRoles")
+	@GetMapping(value = "/getRoles")
 	public ResponseEntity<Object> getRoles(){
 		logger.info("Start: getroles ");
 		
 		AppDTO queData = iUsersMngService.getRoles();
+		
+		logger.info("End: getroles ");
+		return new ResponseEntity<Object>(queData,HttpStatus.OK);
+		
+	}
+	
+	@PostMapping(value = "/creaeUsert")
+	public ResponseEntity<Object> creaeUsert(@RequestBody UserDTO userDto){
+		logger.info("Start: getroles ");
+		
+		AppDTO queData = null;//iUsersMngService.creaeUsert();
 		
 		logger.info("End: getroles ");
 		return new ResponseEntity<Object>(queData,HttpStatus.OK);

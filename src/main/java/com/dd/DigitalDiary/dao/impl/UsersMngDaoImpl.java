@@ -75,7 +75,12 @@ public class UsersMngDaoImpl implements IUsersMngDao{
 		newUser.setLastaccessed(new Date());
 		Collection<Roles> roleList = new ArrayList<Roles>();
 		if(userDto.getPassword() == null) {
-			Roles role = roleRepository.findByRoleName(DDCommonConstant.USER_DEFAULT_ROLE_THROUGH_APP);
+			Roles role = roleRepository.findByRoleId(DDCommonConstant.USER_DEFAULT_ROLE_THROUGH_APP);
+			roleList.add(role);
+		}else {
+			newUser.setUserName(bcryptEncoder.encode(userDto.getPassword()));
+			Roles role = (Roles) userDto.getRoles();
+			role = roleRepository.findByRoleId(role.getRoleId());
 			roleList.add(role);
 		}
 		newUser.setRoles(roleList);
@@ -114,6 +119,12 @@ public class UsersMngDaoImpl implements IUsersMngDao{
 		List<Roles> roleList = roleRepository.findAll();
 		logger.info("End : getRoles UsersMngDaoImpl ");
 		return roleList;
+	}
+
+	@Override
+	public Object createUser() throws DataAccessException, SQLException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

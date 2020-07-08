@@ -14,8 +14,8 @@ public interface UserRepo extends CrudRepository<Users, Integer> {
 	
 	public Users findByUserName(String userName);
 	
-	@Transactional
 	@Modifying
+	@Transactional
 	@Query("update Users set password:password where userId : userId ")
 	public void updatePasswordByUserId(Integer userId,String password);
 	
