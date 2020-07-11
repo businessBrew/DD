@@ -1,7 +1,9 @@
 package com.dd.DigitalDiary.dao.impl;
 
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
@@ -62,6 +64,9 @@ public class UsersMngDaoImpl implements IUsersMngDao{
 		logger.info("start : registerNewUser UsersMngDaoImpl ");
 		Users userData = null;
 		
+		Calendar calendar = Calendar.getInstance();
+		Timestamp currentTimeStamp = new java.sql.Timestamp(calendar.getTime().getTime());
+		
 		if(isUserExist(userDto.getUserName())) {
 			throw new  UserAlreadyExistException("UserName Already Exist " + userDto.getUserName());
 			
@@ -71,7 +76,7 @@ public class UsersMngDaoImpl implements IUsersMngDao{
 		newUser.setUserName(userDto.getUserName());
 		newUser.setPassword(bcryptEncoder.encode(DDCommonConstant.DEFAULT_USER_PASSWORD));
 		newUser.setIsActive(DDCommonConstant.USER_ACTIVATION_FLAG);
-		newUser.setLastUpdated(new Date());
+		newUser.setLastUpdated(currentTimeStamp);
 		newUser.setLastaccessed(new Date());
 		Collection<Roles> roleList = new ArrayList<Roles>();
 		if(userDto.getPassword() == null) {

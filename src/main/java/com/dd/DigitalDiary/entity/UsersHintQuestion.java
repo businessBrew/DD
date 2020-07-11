@@ -22,7 +22,7 @@ public class UsersHintQuestion {
 	@Column(name = "question_id_1")
 	Integer questionId1;
 	
-	@Column(name = "user_id_2")
+	@Column(name = "question_id_2")
 	Integer questionId2;
 	
 	@Column(name = "answer_1")
@@ -78,5 +78,8 @@ public class UsersHintQuestion {
 	public void setAnswer2(String answer2) {
 		this.answer2 = answer2;
 	}
+
+	
+	
 	
 }
